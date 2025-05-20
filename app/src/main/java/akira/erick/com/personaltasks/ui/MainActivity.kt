@@ -1,5 +1,6 @@
-package akira.erick.com.personaltasks
+package akira.erick.com.personaltasks.ui
 
+import akira.erick.com.personaltasks.R
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
