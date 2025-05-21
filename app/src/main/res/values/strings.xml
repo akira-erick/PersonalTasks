@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PersonalTasks</string>
+    <string name="deadline">Deadline</string>
+    <string name="description">Description</string>
+    <string name="title">Title</string>
+    <string name="add_task">Add task</string>
+    <string name="remove_task">Remove task</string>
+    <string name="edit_task">Edit task</string>
+    <string name="save">Save</string>
 </resources>
