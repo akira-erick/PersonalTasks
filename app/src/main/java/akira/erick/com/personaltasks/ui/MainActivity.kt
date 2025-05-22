@@ -2,6 +2,7 @@ package akira.erick.com.personaltasks.ui
 
 import akira.erick.com.personaltasks.R
 import akira.erick.com.personaltasks.databinding.ActivityMainBinding
+import akira.erick.com.personaltasks.model.Task
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.enableEdgeToEdge
@@ -13,6 +14,10 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
     private val amb: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
+
+    // Data Source
+    private val taskList: MutableList<Task> = mutableListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
