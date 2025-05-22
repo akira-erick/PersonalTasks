@@ -4,6 +4,7 @@ import akira.erick.com.personaltasks.R
 import android.content.ContentValues
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.util.Log
 import java.sql.SQLException
@@ -47,7 +48,24 @@ class TaskSqlite(context: Context): TaskDao {
         )
 
     override fun retrieveContact(id: Int): Task {
-        TODO("Not yet implemented")
+        val cursor = taskDatabase.query(
+            true,
+            TASK_TABLE,
+            null,
+            "$ID_COLUMN = ?",
+            arrayOf(id.toString()),
+            null,
+            null,
+            null,
+            null
+        )
+
+        return if (cursor.moveToFirst()) {
+            cursor.toTask()
+        }
+        else{
+            Task()
+        }
     }
 
     override fun retrieveTasks(): MutableList<Task> {
@@ -68,5 +86,13 @@ class TaskSqlite(context: Context): TaskDao {
         put(DESCRIPTION_COLUMN, description)
         put(DEADLINE_COLUMN, deadline)
     }
+
+    private fun Cursor.toTask() = Task(
+        getInt(getColumnIndexOrThrow(ID_COLUMN)),
+        getString(getColumnIndexOrThrow(TITLE_COLUMN)),
+        getString(getColumnIndexOrThrow(DESCRIPTION_COLUMN)),
+        getString(getColumnIndexOrThrow(DEADLINE_COLUMN)),
+
+    )
 
 }
