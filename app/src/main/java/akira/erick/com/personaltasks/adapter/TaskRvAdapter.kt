@@ -53,7 +53,16 @@ class TaskRvAdapter(
 
     override fun getItemCount(): Int = taskList.size
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        TODO("Not yet implemented")
+    override fun onBindViewHolder(
+        holder: TaskViewHolder,
+        position: Int
+    ) {
+        taskList[position].let { task ->
+            with(holder) {
+                titleTv.text = task.title
+                descriptionTv.text = task.description
+                deadlineTv.text = task.deadline
+            }
+        }
     }
 }
