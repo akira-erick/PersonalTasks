@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
 
         setContentView(amb.root)
         setSupportActionBar(amb.toolbarIn.toolbar)
+        supportActionBar?.subtitle = getString(R.string.task_list)
     }
 
     override fun onDestroy() {
