@@ -51,9 +51,7 @@ class TaskRvAdapter(
         )
     )
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = taskList.size
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         TODO("Not yet implemented")
