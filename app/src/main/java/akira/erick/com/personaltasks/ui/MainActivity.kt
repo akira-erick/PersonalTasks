@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnTaskClickListener {
     private val amb: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
@@ -28,5 +28,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onTaskClick(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onRemoveTaskMenuItemClick(position: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onEditTaskMenuItemClick(position: Int) {
+        TODO("Not yet implemented")
     }
 }
