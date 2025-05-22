@@ -47,7 +47,7 @@ class TaskSqlite(context: Context): TaskDao {
             task.toContentValues()
         )
 
-    override fun retrieveContact(id: Int): Task {
+    override fun retrieveTask(id: Int): Task {
         val cursor = taskDatabase.query(
             true,
             TASK_TABLE,
