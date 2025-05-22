@@ -79,9 +79,12 @@ class TaskSqlite(context: Context): TaskDao {
         return taskList
     }
 
-    override fun updateTask(task: Task): Int {
-        TODO("Not yet implemented")
-    }
+    override fun updateTask(task: Task) = taskDatabase.update(
+        TASK_TABLE,
+        task.toContentValues(),
+        "$ID_COLUMN = ?",
+        arrayOf(task.id.toString())
+    )
 
     override fun deleteTask(id: Int): Int {
         TODO("Not yet implemented")
