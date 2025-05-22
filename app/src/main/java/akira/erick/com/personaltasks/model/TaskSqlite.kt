@@ -69,7 +69,14 @@ class TaskSqlite(context: Context): TaskDao {
     }
 
     override fun retrieveTasks(): MutableList<Task> {
-        TODO("Not yet implemented")
+        val taskList: MutableList<Task> = mutableListOf()
+        val cursor = taskDatabase.rawQuery("SELECT * FROM $TASK_TABLE;", null)
+
+        while (cursor.moveToNext()){
+            taskList.add(cursor.toTask())
+        }
+
+        return taskList
     }
 
     override fun updateTask(task: Task): Int {
