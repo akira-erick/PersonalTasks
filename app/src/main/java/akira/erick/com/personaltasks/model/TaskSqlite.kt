@@ -1,6 +1,7 @@
 package akira.erick.com.personaltasks.model
 
 import akira.erick.com.personaltasks.R
+import android.content.ContentValues
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.database.sqlite.SQLiteDatabase
@@ -38,9 +39,12 @@ class TaskSqlite(context: Context): TaskDao {
         }
     }
 
-    override fun createTask(task: Task): Long {
-        TODO("Not yet implemented")
-    }
+    override fun createTask(task: Task) =
+        taskDatabase.insert(
+            TASK_TABLE,
+            null,
+            task.toContentValues()
+        )
 
     override fun retrieveContact(id: Int): Task {
         TODO("Not yet implemented")
@@ -57,4 +61,12 @@ class TaskSqlite(context: Context): TaskDao {
     override fun deleteTask(id: Int): Int {
         TODO("Not yet implemented")
     }
+
+    private fun Task.toContentValues() = ContentValues().apply {
+        put(ID_COLUMN, id)
+        put(TITLE_COLUMN, title)
+        put(DESCRIPTION_COLUMN, description)
+        put(DEADLINE_COLUMN, deadline)
+    }
+
 }
