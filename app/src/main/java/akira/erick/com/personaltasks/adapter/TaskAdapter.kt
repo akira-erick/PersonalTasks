@@ -3,7 +3,6 @@ package akira.erick.com.personaltasks.adapter
 import akira.erick.com.personaltasks.R
 import akira.erick.com.personaltasks.databinding.TileTaskBinding
 import akira.erick.com.personaltasks.model.Task
-import android.content.ClipDescription
 import android.content.Context
 import android.content.Context.LAYOUT_INFLATER_SERVICE
 import android.view.LayoutInflater
