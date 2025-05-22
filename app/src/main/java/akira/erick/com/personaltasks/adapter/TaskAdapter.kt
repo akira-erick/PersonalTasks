@@ -37,9 +37,15 @@ class TaskAdapter(context: Context, private val taskList: MutableList<Task>) :
                 (taskTileView as LinearLayout).tag = tileContactViewHolder
             }
         }
+        //fill tile
+        val viewHolder = taskTileView?.tag as TileTaskViewHolder
+        viewHolder.titleTv.text = task.title
+        viewHolder.descriptionTv.text = task.description
+        viewHolder.deadlineTv.text = task.deadline
 
-        return super.getView(position, convertView, parent)
+        //return created tile
+        return taskTileView as View
     }
 
-    private data class TileTaskViewHolder(val titleTv: TextView, val description: TextView, val deadline: TextView)
+    private data class TileTaskViewHolder(val titleTv: TextView, val descriptionTv: TextView, val deadlineTv: TextView)
 }
