@@ -86,9 +86,11 @@ class TaskSqlite(context: Context): TaskDao {
         arrayOf(task.id.toString())
     )
 
-    override fun deleteTask(id: Int): Int {
-        TODO("Not yet implemented")
-    }
+    override fun deleteTask(id: Int) = taskDatabase.delete(
+        TASK_TABLE,
+        "$ID_COLUMN = ?",
+        arrayOf(id.toString())
+    )
 
     private fun Task.toContentValues() = ContentValues().apply {
         put(ID_COLUMN, id)
