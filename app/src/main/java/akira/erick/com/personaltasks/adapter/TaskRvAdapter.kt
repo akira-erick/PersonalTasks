@@ -4,6 +4,7 @@ import akira.erick.com.personaltasks.R
 import akira.erick.com.personaltasks.databinding.TileTaskBinding
 import akira.erick.com.personaltasks.model.Task
 import akira.erick.com.personaltasks.ui.OnTaskClickListener
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -39,9 +40,16 @@ class TaskRvAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        TODO("Not yet implemented")
-    }
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): TaskViewHolder = TaskViewHolder (
+        TileTaskBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+    )
 
     override fun getItemCount(): Int {
         TODO("Not yet implemented")
