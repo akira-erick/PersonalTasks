@@ -4,6 +4,7 @@ import akira.erick.com.personaltasks.databinding.ActivityTaskBinding
 import akira.erick.com.personaltasks.model.Constant.EXTRA_TASK
 import akira.erick.com.personaltasks.model.Constant.EXTRA_VIEW_TASK
 import akira.erick.com.personaltasks.model.Task
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -48,6 +49,23 @@ class TaskActivity : AppCompatActivity() {
             }
         }
 
+        // setting button
+        with(acb){
+            saveBt.setOnClickListener {
+                Task(
+                    receivedTask?.id?:hashCode(),
+                    titleEt.text.toString(),
+                    descriptionEt.text.toString(),
+                    deadlineEt.text.toString()
+                ).let { task ->
+                    Intent().apply {
+                        putExtra(EXTRA_TASK, task)
+                        setResult(RESULT_OK, this)
+                    }
+                }
+                finish()
+            }
+        }
     }
 
 }
