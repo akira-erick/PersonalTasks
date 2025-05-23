@@ -2,9 +2,11 @@ package akira.erick.com.personaltasks.ui
 
 import akira.erick.com.personaltasks.databinding.ActivityTaskBinding
 import akira.erick.com.personaltasks.model.Constant.EXTRA_TASK
+import akira.erick.com.personaltasks.model.Constant.EXTRA_VIEW_TASK
 import akira.erick.com.personaltasks.model.Task
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 
 class TaskActivity : AppCompatActivity() {
@@ -23,6 +25,27 @@ class TaskActivity : AppCompatActivity() {
             intent.getParcelableExtra(EXTRA_TASK, Task::class.java)
         } else {
             intent.getParcelableExtra<Task>(EXTRA_TASK)
+        }
+
+        //if it is edit
+        receivedTask?.let{
+            supportActionBar?.subtitle = "Edit task"
+            with(acb) {
+                titleEt.setText(it.title)
+                descriptionEt.setText(it.description)
+                deadlineEt.setText(it.deadline)
+
+                //if its view task
+                val viewTask = intent.getBooleanExtra(EXTRA_VIEW_TASK, false)
+                if(viewTask) {
+                    supportActionBar?.subtitle = "View task"
+                    titleEt.isEnabled = false
+                    descriptionEt.isEnabled = false
+                    deadlineEt.isEnabled = false
+
+                    saveBt.visibility = View.GONE
+                }
+            }
         }
 
     }
