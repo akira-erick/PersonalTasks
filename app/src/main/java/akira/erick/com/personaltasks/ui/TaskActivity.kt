@@ -1,5 +1,6 @@
 package akira.erick.com.personaltasks.ui
 
+import akira.erick.com.personaltasks.R
 import akira.erick.com.personaltasks.databinding.ActivityTaskBinding
 import akira.erick.com.personaltasks.model.Constant.EXTRA_TASK
 import akira.erick.com.personaltasks.model.Constant.EXTRA_VIEW_TASK
@@ -44,6 +45,8 @@ class TaskActivity : AppCompatActivity() {
                     descriptionEt.isEnabled = false
                     deadlineEt.isEnabled = false
 
+                    //change button text if is view
+                    cancelBt.setText(R.string.back)
                     saveBt.visibility = View.GONE
                 }
             }
@@ -63,6 +66,9 @@ class TaskActivity : AppCompatActivity() {
                         setResult(RESULT_OK, this)
                     }
                 }
+                finish()
+            }
+            cancelBt.setOnClickListener {
                 finish()
             }
         }
