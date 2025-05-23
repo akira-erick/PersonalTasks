@@ -35,7 +35,7 @@ class TaskActivity : AppCompatActivity() {
             with(acb) {
                 titleEt.setText(it.title)
                 descriptionEt.setText(it.description)
-                deadlineEt.setText(it.deadline)
+                deadlineTv.setText(it.deadline)
 
                 //if its view task
                 val viewTask = intent.getBooleanExtra(EXTRA_VIEW_TASK, false)
@@ -43,7 +43,7 @@ class TaskActivity : AppCompatActivity() {
                     supportActionBar?.subtitle = "View task"
                     titleEt.isEnabled = false
                     descriptionEt.isEnabled = false
-                    deadlineEt.isEnabled = false
+                    deadlineTv.isEnabled = false
 
                     //change button text if is view
                     cancelBt.setText(R.string.back)
@@ -59,7 +59,7 @@ class TaskActivity : AppCompatActivity() {
                     receivedTask?.id?:hashCode(),
                     titleEt.text.toString(),
                     descriptionEt.text.toString(),
-                    deadlineEt.text.toString()
+                    deadlineTv.text.toString()
                 ).let { task ->
                     Intent().apply {
                         putExtra(EXTRA_TASK, task)
