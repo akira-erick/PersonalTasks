@@ -1,6 +1,7 @@
 package akira.erick.com.personaltasks.ui
 
 import akira.erick.com.personaltasks.R
+import akira.erick.com.personaltasks.adapter.TaskRvAdapter
 import akira.erick.com.personaltasks.databinding.ActivityMainBinding
 import akira.erick.com.personaltasks.model.Task
 import android.os.Bundle
@@ -18,6 +19,10 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
     // Data Source
     private val taskList: MutableList<Task> = mutableListOf()
 
+    // Adapter
+    private val taskAdapter: TaskRvAdapter by lazy {
+        TaskRvAdapter(taskList, this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
