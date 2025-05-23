@@ -4,9 +4,12 @@ import akira.erick.com.personaltasks.R
 import akira.erick.com.personaltasks.adapter.TaskRvAdapter
 import akira.erick.com.personaltasks.databinding.ActivityMainBinding
 import akira.erick.com.personaltasks.model.Task
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -24,6 +27,8 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
         TaskRvAdapter(taskList, this)
     }
 
+    private lateinit var carl: ActivityResultLauncher<Intent>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -39,6 +44,16 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.add_task_mi -> {
+                carl.launch(Intent(this, TaskActivity::class.java))
+                true
+            }
+            else -> { false }
+        }
     }
 
     override fun onTaskClick(position: Int) {
