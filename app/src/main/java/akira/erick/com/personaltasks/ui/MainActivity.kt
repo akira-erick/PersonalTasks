@@ -5,6 +5,7 @@ import akira.erick.com.personaltasks.adapter.TaskRvAdapter
 import akira.erick.com.personaltasks.controller.MainController
 import akira.erick.com.personaltasks.databinding.ActivityMainBinding
 import akira.erick.com.personaltasks.model.Constant.EXTRA_TASK
+import akira.erick.com.personaltasks.model.Constant.EXTRA_VIEW_TASK
 import akira.erick.com.personaltasks.model.Task
 import android.content.Intent
 import android.os.Build
@@ -94,7 +95,11 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
     }
 
     override fun onTaskClick(position: Int) {
-        TODO("Not yet implemented")
+        Intent(this, TaskActivity::class.java).apply {
+            putExtra(EXTRA_TASK, taskList[position])
+            putExtra(EXTRA_VIEW_TASK, true)
+            startActivity(this)
+        }
     }
 
     override fun onRemoveTaskMenuItemClick(position: Int) {
