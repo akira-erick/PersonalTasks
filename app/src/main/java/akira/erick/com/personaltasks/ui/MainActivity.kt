@@ -12,6 +12,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -103,11 +104,17 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
     }
 
     override fun onRemoveTaskMenuItemClick(position: Int) {
-        TODO("Not yet implemented")
+        mainController.removeTask((taskList[position].id!!))
+        taskList.removeAt(position)
+        taskAdapter.notifyItemRemoved(position)
+        Toast.makeText(this, "Task removed!", Toast.LENGTH_SHORT).show()
     }
 
     override fun onEditTaskMenuItemClick(position: Int) {
-        TODO("Not yet implemented")
+        Intent(this, TaskActivity::class.java).apply {
+            putExtra(EXTRA_TASK, taskList[position])
+            carl.launch(this)
+        }
     }
 
     private fun fillContactList() {
