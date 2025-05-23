@@ -26,4 +26,9 @@
         android:text="@string/deadline"
         android:textSize="24sp" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#808080" />
+
 </LinearLayout>
