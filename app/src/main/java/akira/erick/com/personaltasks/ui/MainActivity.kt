@@ -2,14 +2,18 @@ package akira.erick.com.personaltasks.ui
 
 import akira.erick.com.personaltasks.R
 import akira.erick.com.personaltasks.adapter.TaskRvAdapter
+import akira.erick.com.personaltasks.controller.MainController
 import akira.erick.com.personaltasks.databinding.ActivityMainBinding
+import akira.erick.com.personaltasks.model.Constant.EXTRA_TASK
 import akira.erick.com.personaltasks.model.Task
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -28,6 +32,10 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
     }
 
     private lateinit var carl: ActivityResultLauncher<Intent>
+
+    private val mainController: MainController by lazy {
+        MainController(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
