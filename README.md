@@ -36,4 +36,4 @@ The Personal Tasks app is a simple and intuitive tool designed to help you manag
 
 ### Explainative Video
 
-** https://youtu.be/Qu8a8ALuy88?si=ocFBz1x-NBlVWrka **
+https://youtu.be/Qu8a8ALuy88?si=ocFBz1x-NBlVWrka
