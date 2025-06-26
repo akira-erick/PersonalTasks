@@ -31,7 +31,7 @@ class TaskAdapter(context: Context, private val taskList: MutableList<Task>) :
                 parent,
                 false
             ).apply {
-                val tileContactViewHolder = TileTaskViewHolder(titleTv, descriptionTv, deadlineTv)
+                val tileContactViewHolder = TileTaskViewHolder(titleTv, descriptionTv, deadlineTv, makeitTv)
                 taskTileView = root
                 (taskTileView as LinearLayout).tag = tileContactViewHolder
             }
@@ -41,10 +41,15 @@ class TaskAdapter(context: Context, private val taskList: MutableList<Task>) :
         viewHolder.titleTv.text = task.title
         viewHolder.descriptionTv.text = task.description
         viewHolder.deadlineTv.text = task.deadline
+        if(task.makeit == 1){
+            viewHolder.makeitTv.text = "Done"
+        } else {
+            viewHolder.makeitTv.text = "To do"
+        }
 
         //return created tile
         return taskTileView as View
     }
 
-    private data class TileTaskViewHolder(val titleTv: TextView, val descriptionTv: TextView, val deadlineTv: TextView)
+    private data class TileTaskViewHolder(val titleTv: TextView, val descriptionTv: TextView, val deadlineTv: TextView, val makeitTv: TextView)
 }

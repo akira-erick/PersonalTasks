@@ -6,6 +6,7 @@ import akira.erick.com.personaltasks.model.Task
 import akira.erick.com.personaltasks.ui.OnTaskClickListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ class TaskRvAdapter(
         val titleTv: TextView = ttb.titleTv
         val descriptionTv: TextView = ttb.descriptionTv
         val deadlineTv: TextView = ttb.deadlineTv
+        val makeitTv: TextView = ttb.makeitTv
 
         init {
             //creating context to each tile to a new holder
@@ -62,6 +64,11 @@ class TaskRvAdapter(
                 titleTv.text = task.title
                 descriptionTv.text = task.description
                 deadlineTv.text = task.deadline
+                if(task.makeit == 1){
+                    makeitTv.text = "Done"
+                } else {
+                    makeitTv.text = "To do"
+                }
             }
         }
     }

@@ -47,6 +47,7 @@ class TaskActivity : AppCompatActivity() {
                 titleEt.setText(it.title)
                 descriptionEt.setText(it.description)
                 deadlineTv.text = it.deadline
+                makeitCb.isChecked = it.makeit != 0
 
                 //if its view task
                 val viewTask = intent.getBooleanExtra(EXTRA_VIEW_TASK, false)
@@ -55,6 +56,13 @@ class TaskActivity : AppCompatActivity() {
                     titleEt.isEnabled = false
                     descriptionEt.isEnabled = false
                     deadlineTv.isEnabled = false
+
+                    makeitCb.isEnabled = false
+                    if(it.makeit == 1){
+                        makeitCb.text = "Done"
+                    } else {
+                        makeitCb.text = "To do"
+                    }
 
                     //change button text if is view
                     cancelBt.setText(R.string.back)
@@ -66,11 +74,17 @@ class TaskActivity : AppCompatActivity() {
         // setting button
         with(acb){
             saveBt.setOnClickListener {
+                val value = if(makeitCb.isChecked){
+                    1
+                } else {
+                    0
+                }
                 Task(
                     receivedTask?.id?:hashCode(),
                     titleEt.text.toString(),
                     descriptionEt.text.toString(),
-                    deadlineTv.text.toString()
+                    deadlineTv.text.toString(),
+                    value
                 ).let { task ->
                     Intent().apply {
                         putExtra(EXTRA_TASK, task)

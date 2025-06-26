@@ -26,6 +26,13 @@
         android:text="@string/deadline"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/makeit_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/to_do"
+        android:textSize="20sp"/>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
