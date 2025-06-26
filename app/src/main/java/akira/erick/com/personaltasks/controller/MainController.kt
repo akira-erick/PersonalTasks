@@ -12,5 +12,5 @@ class MainController(mainActivity: MainActivity) {
     fun getTask(id: Int) = taskDao.retrieveTask(id)
     fun getTasks() = taskDao.retrieveTasks()
     fun modifyTask(task: Task) = taskDao.updateTask(task)
-    fun removeTask(id: Int) = taskDao.deleteTask(id)
+    fun removeTask(task: Task) = taskDao.deleteTask(task)
 }

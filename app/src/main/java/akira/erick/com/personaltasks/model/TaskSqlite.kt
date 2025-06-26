@@ -88,10 +88,10 @@ class TaskSqlite(context: Context): TaskDao {
         arrayOf(task.id.toString())
     )
 
-    override fun deleteTask(id: Int) = taskDatabase.delete(
+    override fun deleteTask(task: Task) = taskDatabase.delete(
         TASK_TABLE,
         "$ID_COLUMN = ?",
-        arrayOf(id.toString())
+        arrayOf(task.id.toString())
     )
 
     private fun Task.toContentValues() = ContentValues().apply {

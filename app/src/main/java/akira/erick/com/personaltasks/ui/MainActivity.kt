@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
     }
 
     override fun onRemoveTaskMenuItemClick(position: Int) {
-        mainController.removeTask((taskList[position].id!!))
+        mainController.removeTask(taskList[position])
         taskList.removeAt(position)
         taskAdapter.notifyItemRemoved(position)
         Toast.makeText(this, "Task removed!", Toast.LENGTH_SHORT).show()

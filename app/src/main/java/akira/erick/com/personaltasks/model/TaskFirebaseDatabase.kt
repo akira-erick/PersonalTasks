@@ -44,27 +44,41 @@ class TaskFirebaseDatabase: TaskDao {
             override fun onCancelled(error: DatabaseError) {
                 // NSA
             }
+        })
 
+        databaseReference.addListenerForSingleValueEvent(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val taskMap = snapshot.getValue<Map<String, Task>>()
+                taskList.clear()
+                taskMap?.values?.also{
+                    taskList.addAll(it)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // NSA
+            }
         })
     }
 
     override fun createTask(task: Task): Long {
-        TODO("Not yet implemented")
+        databaseReference.child(task.id.toString()).setValue(task)
+        return 1L
     }
 
-    override fun retrieveTask(id: Int): Task {
-        TODO("Not yet implemented")
-    }
+    override fun retrieveTask(id: Int): Task = taskList[taskList.indexOfFirst { it.id == id }]
 
     override fun retrieveTasks(): MutableList<Task> {
-        TODO("Not yet implemented")
+        return taskList
     }
 
     override fun updateTask(task: Task): Int {
-        TODO("Not yet implemented")
+        databaseReference.child(task.id.toString()).setValue(task)
+        return 1
     }
 
-    override fun deleteTask(id: Int): Int {
-        TODO("Not yet implemented")
+    override fun deleteTask(task: Task): Int {
+        databaseReference.child(task.id.toString()).removeValue()
+        return 1
     }
 }
