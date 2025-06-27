@@ -19,4 +19,5 @@
     <string name="reset_password">Reset Password</string>
     <string name="register">Register</string>
     <string name="login">Login</string>
+    <string name="default_web_client_id">166358689946-66ehl20tg9vs8b5d0ulslui4e920dqj4.apps.googleusercontent.com</string>
 </resources>

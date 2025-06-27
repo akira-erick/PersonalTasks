@@ -6,6 +6,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.credentials.Credential
+import androidx.credentials.CredentialManager
+import androidx.credentials.CustomCredential
+import androidx.credentials.GetCredentialRequest
+import androidx.credentials.exceptions.GetCredentialException
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.Companion.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -57,6 +66,62 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        alb.googleSignInBt.setOnClickListener{
+            val googleIdOption = GetGoogleIdOption.Builder()
+                .setServerClientId(getString(R.string.default_web_client_id))
+                .setFilterByAuthorizedAccounts(true)
+                .build()
+
+            var request = GetCredentialRequest.Builder()
+                .addCredentialOption(googleIdOption)
+                .build()
+
+            var credentialManager = CredentialManager.create(this)
+            signInCoroutine.launch {
+                try {
+                    val result = credentialManager.getCredential(this@LoginActivity, request)
+                    handleSignIn(result.credential)
+                } catch (e: GetCredentialException){
+                    runOnUiThread {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Authentication failed. Cause: ${e.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+            }
+        }
+
+    }
+
+    private fun handleSignIn(credential: Credential){
+        if (credential is CustomCredential && credential.type == TYPE_GOOGLE_ID_TOKEN_CREDENTIAL) {
+            val googleIdTokenCredential = GoogleIdTokenCredential.createFrom(credential.data)
+            val credential = GoogleAuthProvider.getCredential(googleIdTokenCredential.idToken, null)
+            Firebase.auth.signInWithCredential(credential).addOnFailureListener {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Login failed. Cause ${it.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }.addOnSuccessListener {
+                openMainActivity()
+            }
+        } else {
+            Toast.makeText(
+                this,
+                "Credential is not Google ID!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (Firebase.auth.currentUser != null) {
+            openMainActivity()
+        }
     }
 
     private fun openMainActivity() {
