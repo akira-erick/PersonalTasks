@@ -6,5 +6,5 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Task::class], version = 1)
 abstract class TaskRoomDb: RoomDatabase() {
-    abstract fun contactDao(): TaskDao
+    abstract fun taskDao(): TaskDao
 }
