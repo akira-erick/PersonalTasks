@@ -4,6 +4,7 @@ import akira.erick.com.personaltasks.R
 import akira.erick.com.personaltasks.databinding.ActivityTaskBinding
 import akira.erick.com.personaltasks.model.Constant.EXTRA_TASK
 import akira.erick.com.personaltasks.model.Constant.EXTRA_VIEW_TASK
+import akira.erick.com.personaltasks.model.PriorityEnum
 import akira.erick.com.personaltasks.model.Task
 import android.app.DatePickerDialog
 import android.content.Intent
@@ -49,6 +50,16 @@ class TaskActivity : AppCompatActivity() {
                 deadlineTv.text = it.deadline
                 makeitCb.isChecked = it.makeit != 0
 
+                if (it.priority == PriorityEnum.LOW.toString()){
+                    lowPriorityCb.isChecked
+                }
+                if (it.priority == PriorityEnum.MEDIUM.toString()){
+                    mediumPriorityCb.isChecked
+                }
+                if (it.priority == PriorityEnum.HIGH.toString()){
+                    highPriorityCb.isChecked
+                }
+
                 //if its view task
                 val viewTask = intent.getBooleanExtra(EXTRA_VIEW_TASK, false)
                 if(viewTask) {
@@ -56,6 +67,10 @@ class TaskActivity : AppCompatActivity() {
                     titleEt.isEnabled = false
                     descriptionEt.isEnabled = false
                     deadlineTv.isEnabled = false
+
+                    highPriorityCb.isEnabled = false
+                    mediumPriorityCb.isEnabled = false
+                    lowPriorityCb.isEnabled = false
 
                     makeitCb.isEnabled = false
                     if(it.makeit == 1){
@@ -73,18 +88,44 @@ class TaskActivity : AppCompatActivity() {
 
         // setting button
         with(acb){
+
+            var quant = 0
+            if (lowPriorityCb.isChecked){
+                quant += 1
+            }
+            if(mediumPriorityCb.isChecked){
+                quant += 1
+            }
+            if(highPriorityCb.isChecked){
+                quant += 1
+            }
+
+            if (quant > 1){
+                saveBt.isEnabled = false
+            }
+
             saveBt.setOnClickListener {
                 val value = if(makeitCb.isChecked){
                     1
                 } else {
                     0
                 }
+
+                var priority = PriorityEnum.LOW
+                if (mediumPriorityCb.isChecked){
+                    priority = PriorityEnum.MEDIUM
+                }
+                if (highPriorityCb.isChecked){
+                    priority = PriorityEnum.HIGH
+                }
+
                 Task(
                     receivedTask?.id?:hashCode(),
                     titleEt.text.toString(),
                     descriptionEt.text.toString(),
                     deadlineTv.text.toString(),
                     false,
+                    priority.toString(),
                     value
                 ).let { task ->
                     Intent().apply {

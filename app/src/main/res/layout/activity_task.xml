@@ -53,6 +53,33 @@
         app:layout_constraintTop_toBottomOf="@+id/description_et" />
 
     <CheckBox
+        android:id="@+id/high_priority_cb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/high"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/deadline_tv"/>
+
+    <CheckBox
+        android:id="@+id/medium_priority_cb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/high_priority_cb"/>
+
+    <CheckBox
+        android:id="@+id/low_priority_cb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/low"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/medium_priority_cb"/>
+
+    <CheckBox
         android:id="@+id/makeit_cb"
         android:text="@string/make_it"
         android:layout_width="wrap_content"
@@ -62,8 +89,7 @@
         android:paddingBottom="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deadline_tv"
-        />
+        app:layout_constraintTop_toBottomOf="@id/low_priority_cb" />
 
     <Button
         android:id="@+id/cancel_bt"

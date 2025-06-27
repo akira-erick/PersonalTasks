@@ -25,4 +25,8 @@
     <string name="visualiza_task">Visualiza Task</string>
     <string name="view_deleted_tasks">View deleted tasks</string>
     <string name="deleted_task_list">Deleted Task List</string>
+    <string name="priority">Priority</string>
+    <string name="high">High</string>
+    <string name="medium">Medium</string>
+    <string name="low">Low</string>
 </resources>
