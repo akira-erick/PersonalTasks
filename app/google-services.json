@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "166358689946",
+    "project_id": "personaltasks-7088",
+    "storage_bucket": "personaltasks-7088.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166358689946:android:911db0a0e6eb373a3c1723",
+        "android_client_info": {
+          "package_name": "akira.erick.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166358689946-d1nmiob6n7rcgjqqajmvpclc0n4ojc9a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "akira.erick.com",
+            "certificate_hash": "49e156f588b87fb09956686bc1f27c03ec746f55"
+          }
+        },
+        {
+          "client_id": "166358689946-66ehl20tg9vs8b5d0ulslui4e920dqj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDltwAs-3nEyoPedQsef_xmFQBjxBdvh9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166358689946-66ehl20tg9vs8b5d0ulslui4e920dqj4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
