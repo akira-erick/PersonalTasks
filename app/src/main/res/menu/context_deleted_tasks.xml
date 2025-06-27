@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/reactivate_task_mi"
+        android:title="@string/reactivate_task" />
+    <item
+        android:id="@+id/visualize_task_mi"
+        android:title="@string/visualiza_task" />
+</menu>
