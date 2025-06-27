@@ -4,9 +4,14 @@ import akira.erick.com.personaltasks.R
 import akira.erick.com.personaltasks.databinding.ActivityLoginBinding
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.auth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
     private val alb: ActivityLoginBinding by lazy {
@@ -26,7 +31,29 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        
+        alb.signInBt.setOnClickListener {
+            signInCoroutine.launch {
+                Firebase.auth.signInWithEmailAndPassword(
+                    alb.emailLoginEt.text.toString(),
+                    alb.passwordLoginEt.text.toString()
+                ).addOnFailureListener {
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Login filed. Cause ${it.message}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }.addOnSuccessListener {
+                    openMainActivity()
+                }
+            }
+        }
+
     }
 
+    private fun openMainActivity() {
+        startActivity(
+            Intent(this@LoginActivity, MainActivity::class.java)
+        )
+        finish()
+    }
 }
