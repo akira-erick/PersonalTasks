@@ -23,4 +23,5 @@
     <string name="sign_out">Sign out</string>
     <string name="reactivate_task">Reactivate Task</string>
     <string name="visualiza_task">Visualiza Task</string>
+    <string name="view_deleted_tasks">View deleted tasks</string>
 </resources>
