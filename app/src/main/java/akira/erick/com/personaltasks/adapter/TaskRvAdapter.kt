@@ -20,6 +20,7 @@ class TaskRvAdapter(
         val descriptionTv: TextView = ttb.descriptionTv
         val deadlineTv: TextView = ttb.deadlineTv
         val makeitTv: TextView = ttb.makeitTv
+        val priorityTv: TextView = ttb.priorityTv
 
         init {
             //creating context to each tile to a new holder
@@ -64,6 +65,9 @@ class TaskRvAdapter(
                 titleTv.text = task.title
                 descriptionTv.text = task.description
                 deadlineTv.text = task.deadline
+
+                priorityTv.text = task.priority
+
                 if(task.makeit == 1){
                     makeitTv.text = "Done"
                 } else {
