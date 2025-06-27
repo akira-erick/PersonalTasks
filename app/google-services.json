@@ -1,23 +1,24 @@
 {
   "project_info": {
     "project_number": "166358689946",
+    "firebase_url": "https://personaltasks-7088-default-rtdb.firebaseio.com",
     "project_id": "personaltasks-7088",
     "storage_bucket": "personaltasks-7088.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:166358689946:android:911db0a0e6eb373a3c1723",
+        "mobilesdk_app_id": "1:166358689946:android:1161f53ea79b3b963c1723",
         "android_client_info": {
-          "package_name": "akira.erick.com"
+          "package_name": "akira.erick.com.personaltasks"
         }
       },
       "oauth_client": [
         {
-          "client_id": "166358689946-d1nmiob6n7rcgjqqajmvpclc0n4ojc9a.apps.googleusercontent.com",
+          "client_id": "166358689946-6nl4ptdr66u1efksibjpg5vco70nch1i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "akira.erick.com",
+            "package_name": "akira.erick.com.personaltasks",
             "certificate_hash": "49e156f588b87fb09956686bc1f27c03ec746f55"
           }
         },
