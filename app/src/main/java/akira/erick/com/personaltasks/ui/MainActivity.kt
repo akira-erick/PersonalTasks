@@ -24,6 +24,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity(), OnTaskClickListener {
     private val amb: ActivityMainBinding by lazy {
@@ -103,7 +105,6 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
         amb.taskRv.adapter = taskAdapter
         amb.taskRv.layoutManager = LinearLayoutManager(this)
 
-        fillContactList()
     }
 
     override fun onDestroy() {
@@ -119,6 +120,11 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
         return when(item.itemId) {
             R.id.add_task_mi -> {
                 carl.launch(Intent(this, TaskActivity::class.java))
+                true
+            }
+            R.id.sign_out_mi -> {
+                Firebase.auth.signOut()
+                finish()
                 true
             }
             else -> { false }
@@ -147,11 +153,8 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
         }
     }
 
-    private fun fillContactList() {
-        taskList.clear()
-        Thread{
-            taskList.addAll(mainController.getTasks())
-            taskAdapter.notifyDataSetChanged()
-        }.start()
+    override fun onStart() {
+        super.onStart()
+        if (Firebase.auth.currentUser == null) finish()
     }
 }
