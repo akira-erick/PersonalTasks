@@ -7,6 +7,7 @@ import akira.erick.com.personaltasks.controller.MainController
 import akira.erick.com.personaltasks.databinding.ActivityDeletedTaskListBinding
 import akira.erick.com.personaltasks.model.Constant.EXTRA_TASK
 import akira.erick.com.personaltasks.model.Constant.EXTRA_TASK_ARRAY
+import akira.erick.com.personaltasks.model.Constant.EXTRA_VIEW_TASK
 import akira.erick.com.personaltasks.model.Task
 import akira.erick.com.personaltasks.ui.MainActivity.Companion
 import android.content.Intent
@@ -83,7 +84,7 @@ class DeletedTaskListActivity : AppCompatActivity(), OnDeletedTaskClickListener{
     }
 
     override fun onTaskClick(position: Int) {
-        TODO("Not yet implemented")
+        // NSA
     }
 
     override fun onActivateTaskMenuItemClick(position: Int) {
@@ -94,8 +95,13 @@ class DeletedTaskListActivity : AppCompatActivity(), OnDeletedTaskClickListener{
     }
 
     override fun onVisualizationMenuItemClick(position: Int) {
-        TODO("Not yet implemented")
+        Intent(this, DeletedTaskActivity::class.java).apply{
+            putExtra(EXTRA_TASK, taskList[position])
+            putExtra(EXTRA_VIEW_TASK, true)
+            startActivity(this)
+        }
     }
+
 
     override fun onStart() {
         super.onStart()
