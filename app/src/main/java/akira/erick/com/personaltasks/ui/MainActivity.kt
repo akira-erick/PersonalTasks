@@ -102,6 +102,14 @@ class MainActivity : AppCompatActivity(), OnTaskClickListener {
                 }
             }
         }
+
+        amb.deletedListBt.setOnClickListener {
+            Intent(this, DeletedTaskListActivity::class.java).apply{
+                startActivity(this)
+            }
+            mainController.getTasks()
+        }
+
         amb.taskRv.adapter = taskAdapter
         amb.taskRv.layoutManager = LinearLayoutManager(this)
 
