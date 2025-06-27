@@ -17,6 +17,7 @@ class TaskSqlite(context: Context): TaskDao {
         private const val TITLE_COLUMN = "title"
         private const val DESCRIPTION_COLUMN = "description"
         private const val DEADLINE_COLUMN = "deadline"
+        private const val IS_DELETED_COLUMN = "isDeleted"
         private const val MAKEIT_COLUMN = "makeit"
 
         const val CREATE_TASK_TABLE_STATEMENT = "CREATE TABLE IF NOT EXISTS $TASK_TABLE (" +
@@ -24,6 +25,7 @@ class TaskSqlite(context: Context): TaskDao {
                 "$TITLE_COLUMN TEXT NOT NULL, " +
                 "$DESCRIPTION_COLUMN TEXT NOT NULL, " +
                 "$DEADLINE_COLUMN TEXT NOT NULL," +
+                "$IS_DELETED_COLUMN INTEGER NOT NULL" +
                 "$MAKEIT_COLUMN INTEGER NOT NULL);"
     }
 
@@ -99,6 +101,7 @@ class TaskSqlite(context: Context): TaskDao {
         put(TITLE_COLUMN, title)
         put(DESCRIPTION_COLUMN, description)
         put(DEADLINE_COLUMN, deadline)
+        put(IS_DELETED_COLUMN, is_deleted)
         put(MAKEIT_COLUMN, makeit)
     }
 
@@ -107,6 +110,7 @@ class TaskSqlite(context: Context): TaskDao {
         getString(getColumnIndexOrThrow(TITLE_COLUMN)),
         getString(getColumnIndexOrThrow(DESCRIPTION_COLUMN)),
         getString(getColumnIndexOrThrow(DEADLINE_COLUMN)),
+        getInt(getColumnIndexOrThrow(IS_DELETED_COLUMN)) == 1,
         getInt(getColumnIndexOrThrow(MAKEIT_COLUMN)),
     )
 

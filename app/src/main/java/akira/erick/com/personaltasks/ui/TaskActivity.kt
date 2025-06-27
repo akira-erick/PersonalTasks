@@ -84,6 +84,7 @@ class TaskActivity : AppCompatActivity() {
                     titleEt.text.toString(),
                     descriptionEt.text.toString(),
                     deadlineTv.text.toString(),
+                    false,
                     value
                 ).let { task ->
                     Intent().apply {

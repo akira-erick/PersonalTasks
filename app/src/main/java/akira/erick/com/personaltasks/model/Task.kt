@@ -14,5 +14,6 @@ data class Task(
     var title: String = "",
     var description: String = "",
     var deadline: String = "",
+    var is_deleted: Boolean = false,
     var makeit: Int = 0
 ): Parcelable

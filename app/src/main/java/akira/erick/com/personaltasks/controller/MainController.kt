@@ -25,18 +25,40 @@ class MainController(private val mainActivity: MainActivity) {
 
     fun getTasks(){
         databaseCoroutineScope.launch {
-            val taskList = taskDao.retrieveTasks()
+            val taskList = taskDao.retrieveTasks().filter{ !it.is_deleted }
             mainActivity.getTasksHandler.sendMessage(Message().apply {
                 data.putParcelableArray(EXTRA_TASK_ARRAY, taskList.toTypedArray())
             })
         }
     }
+
+    fun getDeletedTasks(){
+        databaseCoroutineScope.launch{
+            val taskList = taskDao.retrieveTasks().filter { it.is_deleted }
+        }
+    }
+
     fun modifyTask(task: Task){
         databaseCoroutineScope.launch {
             taskDao.updateTask(task)
         }
     }
+
+    fun activateTask(task: Task){
+        task.is_deleted = false;
+        databaseCoroutineScope.launch{
+            taskDao.updateTask(task)
+        }
+    }
+
     fun removeTask(task: Task){
+        task.is_deleted = true;
+        databaseCoroutineScope.launch{
+            taskDao.updateTask(task)
+        }
+    }
+
+    fun deleteTask(task: Task){
         databaseCoroutineScope.launch{
             taskDao.deleteTask(task)
         }
