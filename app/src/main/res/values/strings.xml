@@ -24,4 +24,5 @@
     <string name="reactivate_task">Reactivate Task</string>
     <string name="visualiza_task">Visualiza Task</string>
     <string name="view_deleted_tasks">View deleted tasks</string>
+    <string name="deleted_task_list">Deleted Task List</string>
 </resources>
